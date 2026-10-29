@@ -45,6 +45,28 @@ namespace CustomJSONData.HarmonyPatches
             float? nextEventBrightness,
             LightColorBaseData lightColorBaseData)
         {
+            if (lightColorBaseData is not ICustomData customData)
+            {
+                foreach (BeatmapEventData eventData in instance.ConvertLightColorBeatmapEvent(
+                             subtypeIdentifier,
+                             time,
+                             groupId,
+                             elementId,
+                             usePreviousValue,
+                             easeType,
+                             colorType,
+                             brightness,
+                             strobeBeatFrequency,
+                             strobeBrightness,
+                             strobeFade,
+                             nextEventBrightness))
+                {
+                    yield return eventData;
+                }
+
+                yield break;
+            }
+
             if (instance is not BeatmapLightEventConverterNoConvert type || type._ignoreColorEvents)
             {
                 yield break;
@@ -61,7 +83,7 @@ namespace CustomJSONData.HarmonyPatches
                 strobeBeatFrequency,
                 strobeBrightness,
                 strobeFade,
-                lightColorBaseData is ICustomData customData ? customData.customData : new CustomData(),
+                customData.customData,
                 VersionExtensions.version3);
         }
 #elif V1_40_8

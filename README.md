@@ -302,3 +302,7 @@ private static bool HandleFakeNotes(CustomBeatmapSaveData.SaveDataCustomDatas cu
 ```
 
 A `[JSONDeserializer]` method may request the following types to be injected: `JsonTextReader`, `List<BeatmapSaveData.BpmChangeEventData>`, `List<BeatmapSaveData.RotationEventData>`, `List<BeatmapSaveData.ColorNoteData>`, `List<BeatmapSaveData.BombNoteData>`, `List<BeatmapSaveData.ObstacleData>`, `List<BeatmapSaveData.SliderData>`, `List<BeatmapSaveData.BurstSliderData>`, `List<BeatmapSaveData.WaypointData>`, `List<BeatmapSaveData.BasicEventData>`, `List<BeatmapSaveData.ColorBoostEventData>`, `List<BeatmapSaveData.LightColorEventBoxGroup>`, `List<BeatmapSaveData.LightRotationEventBoxGroup>`, `List<BasicEventTypesWithKeywords.BasicEventTypesForKeyword>`, `bool`(useNormalEventsAsCompatibleEvents), `List<CustomEventData>`, `CustomBeatmapSaveData.SaveDataCustomDatas`
+
+## Build for Beat Saber 1.45.2
+
+Run `pwsh -File ./scripts/build.ps1 -GameRoot '<Beat Saber directory>'`. The build uses the installed game and mod assemblies and downloads dnlib 4.5.0 into the repository's temporary cache. The plugin is written to `releases/bs-1.45.2/Plugins/`.
